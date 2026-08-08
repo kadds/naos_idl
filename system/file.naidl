@@ -24,14 +24,14 @@ struct Stat {
 };
 
 protocol File @uuid("2b9e3c2e-8c7d-4fb1-9e21-4c4b0e0a1002") @revision(1) @features(0) @scope(2) @uapi_name("FILE") {
-    method pread @id(16) @max_bytes(65536) {
+    method pread @id(1) @max_bytes(65536) {
         i64 offset @id(1);
         u64 size @id(2);
         u64 flags @id(3);
     } -> {
         bytes<65536> data @id(1) @inline;
     };
-    method pwrite @id(17) @max_bytes(65536) {
+    method pwrite @id(2) @max_bytes(65536) {
         i64 offset @id(1);
         u64 size @id(2);
         u64 flags @id(3);
@@ -39,27 +39,27 @@ protocol File @uuid("2b9e3c2e-8c7d-4fb1-9e21-4c4b0e0a1002") @revision(1) @featur
     } -> {
         u64 count @id(1);
     };
-    method seek @id(18) {
+    method seek @id(3) {
         i64 offset @id(1);
         u64 whence @id(2);
     } -> {
         i64 offset @id(1);
     };
-    method stat @id(19) -> {
+    method stat @id(4) -> {
         Stat value @id(1);
     };
-    method sync @id(20) ->;
-    method truncate @id(21) {
+    method sync @id(5) ->;
+    method truncate @id(6) {
         u64 length @id(1);
     } ->;
-    method allocate @id(22) {
+    method allocate @id(7) {
         u64 offset @id(1);
         u64 length @id(2);
     } ->;
-    method get_flags @id(23) -> {
+    method get_flags @id(8) -> {
         u64 flags @id(1);
     };
-    method set_flags @id(24) {
+    method set_flags @id(9) {
         u64 flags @id(1);
     } ->;
 };
